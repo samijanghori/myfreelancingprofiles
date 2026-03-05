@@ -1,298 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freelancing Profiles · Samiulla Mohammadi</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freelancing Profiles · Samiulla Mohammadi</title>
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 30px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+<style>
 
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            margin: auto;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+body{
+font-family: Arial, sans-serif;
+background: linear-gradient(135deg,#667eea,#764ba2);
+min-height:100vh;
+padding:30px 15px;
+display:flex;
+justify-content:center;
+}
 
-        .header h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #2c3e50, #3498db);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-        }
+.container{
+max-width:1100px;
+width:100%;
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,0.25);
+}
 
-        .info {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 25px;
-            border-radius: 16px;
-            margin: 30px 0 40px;
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            flex-wrap: wrap;
-        }
+.header{
+text-align:center;
+margin-bottom:25px;
+}
 
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1.2rem;
-        }
+.header h1{
+font-size:2.4rem;
+color:#2c3e50;
+}
 
-        .info-item .label {
-            font-weight: 600;
-            color: #2c3e50;
-            background: white;
-            padding: 8px 20px;
-            border-radius: 40px;
-        }
+.info{
+display:flex;
+justify-content:center;
+gap:50px;
+flex-wrap:wrap;
+background:#f3f4f6;
+padding:20px;
+border-radius:12px;
+margin-bottom:40px;
+}
 
-        .info-item .value {
-            color: #34495e;
-            font-weight: 500;
-        }
+.info-item{
+font-size:1.1rem;
+}
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin: 30px 0;
-            transition: all 0.3s ease;
-        }
+.info-item .label{
+font-weight:bold;
+margin-right:8px;
+}
 
-        .profile-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid #edf2f7;
-            position: relative;
-            z-index: 1;
-        }
+.gallery{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:25px;
+}
 
-        .image-wrapper {
-            background: #f8fafc;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid #e2e8f0;
-        }
+.profile-card{
+background:#fff;
+border-radius:16px;
+overflow:hidden;
+border:1px solid #e5e7eb;
+box-shadow:0 10px 20px rgba(0,0,0,0.08);
+transition:0.3s;
+}
 
-        .profile-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 16px;
-            border: 3px solid white;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: block;
-        }
+.image-wrapper{
+padding:15px;
+background:#f8fafc;
+}
 
-        /* افکت هاور روی کل گالری */
-        .gallery:hover .profile-card:not(:hover) {
-            opacity: 0.5;
-            filter: blur(1px);
-            transform: scale(0.95);
-        }
+.profile-card img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:10px;
+}
 
-        /* کارتی که هاور شده - بزرگنمایی 30% */
-        .profile-card:hover {
-            transform: scale(1.3) translateY(20px);
-            z-index: 999;
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.25);
-        }
+.profile-name{
+text-align:center;
+padding:14px;
+font-weight:bold;
+background:#fafafa;
+border-top:1px solid #eee;
+}
 
-        /* عکس داخل کارت هاور شده */
-        .profile-card:hover img {
-            height: 280px;
-            object-fit: cover;
-        }
+.footer{
+text-align:center;
+margin-top:40px;
+padding-top:25px;
+border-top:1px dashed #ccc;
+color:#555;
+}
 
-        /* اسم پلتفرم در حالت هاور */
-        .profile-card:hover .profile-name {
-            font-size: 1.2rem;
-            padding: 15px 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-        }
+/* Hover effect فقط برای دستگاه‌هایی که موس دارند */
 
-        .profile-name {
-            padding: 15px 20px;
-            font-weight: 700;
-            color: #1e293b;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1.1rem;
-            background: white;
-            transition: all 0.3s ease;
-        }
+@media (hover:hover){
 
-        .profile-name::before {
-            content: "📸";
-            font-size: 1.2rem;
-        }
+.gallery:hover .profile-card:not(:hover){
+opacity:0.5;
+transform:scale(0.95);
+}
 
-        /* تنظیم موقعیت کارت‌های مختلف در هاور */
-        .profile-card:nth-child(odd):hover {
-            transform: scale(1.3) translateX(30px) translateY(15px);
-        }
+.profile-card:hover{
+transform:scale(1.15);
+box-shadow:0 25px 40px rgba(0,0,0,0.2);
+}
 
-        .profile-card:nth-child(even):hover {
-            transform: scale(1.3) translateX(-30px) translateY(15px);
-        }
+}
 
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 2px dashed #cbd5e1;
-        }
+/* Tablet */
 
-        .footer p {
-            color: #475569;
-            font-size: 1.1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #f1f5f9;
-            padding: 12px 30px;
-            border-radius: 50px;
-        }
+@media (max-width:900px){
 
-        .note {
-            text-align: center;
-            background: #fff3cd;
-            color: #856404;
-            padding: 15px;
-            border-radius: 12px;
-            margin: 30px 0 0;
-            font-size: 1rem;
-        }
+.gallery{
+grid-template-columns:1fr;
+}
 
-        @media (max-width: 900px) {
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-            
-            .profile-card:hover {
-                transform: scale(1.1) !important;
-            }
-        }
-    </style>
+}
+
+/* Mobile */
+
+@media (max-width:500px){
+
+body{
+padding:15px 10px;
+}
+
+.container{
+padding:20px;
+}
+
+.header h1{
+font-size:1.7rem;
+}
+
+.profile-card img{
+height:180px;
+}
+
+.info{
+flex-direction:column;
+gap:10px;
+text-align:center;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
 <div class="container">
-    
-    <div class="header">
-        <h1>🎯 Freelancing Profiles</h1>
-    </div>
 
-    <div class="info">
-        <div class="info-item">
-            <span class="label">Name</span>
-            <span class="value">Samiulla Mohammadi</span>
-        </div>
-        <div class="info-item">
-            <span class="label">Supervisor</span>
-            <span class="value">Farzad Azizi</span>
-        </div>
-    </div>
+<div class="header">
+<h1>Freelancing Profiles</h1>
+</div>
 
-    <div class="gallery">
-        <!-- Fiverr -->
-        <div class="profile-card">
-            <div class="image-wrapper">
-                <img src="img/fiverr.png" alt="Fiverr Profile" onerror="this.style.display='none'; this.parentElement.innerHTML+='<div style=\'padding:60px;background:#f1f5f9;border-radius:16px;color:#64748b;font-size:1.2rem;\'>🔸 Fiverr<br><small>add screenshot</small></div>'">
-            </div>
-            <div class="profile-name">Fiverr</div>
-        </div>
+<div class="info">
 
-        <!-- Freelancer -->
-        <div class="profile-card">
-            <div class="image-wrapper">
-                <img src="img/freelancer.JPG" alt="Freelancer.com Profile" onerror="this.style.display='none'; this.parentElement.innerHTML+='<div style=\'padding:60px;background:#f1f5f9;border-radius:16px;color:#64748b;font-size:1.2rem;\'>🔸 Freelancer<br><small>add screenshot</small></div>'">
-            </div>
-            <div class="profile-name">Freelancer.com</div>
-        </div>
+<div class="info-item">
+<span class="label">Name:</span>
+<span>Samiulla Mohammadi</span>
+</div>
 
-        <!-- Guru -->
-        <div class="profile-card">
-            <div class="image-wrapper">
-                <img src="img/guru.JPG" alt="Guru Profile" onerror="this.style.display='none'; this.parentElement.innerHTML+='<div style=\'padding:60px;background:#f1f5f9;border-radius:16px;color:#64748b;font-size:1.2rem;\'>🔸 Guru<br><small>add screenshot</small></div>'">
-            </div>
-            <div class="profile-name">Guru</div>
-        </div>
+<div class="info-item">
+<span class="label">Supervisor:</span>
+<span>Farzad Azizi</span>
+</div>
 
-        <!-- Preply -->
-        <div class="profile-card">
-            <div class="image-wrapper">
-                <img src="img/preply.JPG" alt="Preply Profile" onerror="this.style.display='none'; this.parentElement.innerHTML+='<div style=\'padding:60px;background:#f1f5f9;border-radius:16px;color:#64748b;font-size:1.2rem;\'>🔸 Preply<br><small>add screenshot</small></div>'">
-            </div>
-            <div class="profile-name">Preply</div>
-        </div>
+</div>
 
-        <!-- Superproof -->
-        <div class="profile-card">
-            <div class="image-wrapper">
-                <img src="img/superproof.JPG" alt="Superproof Profile" onerror="this.style.display='none'; this.parentElement.innerHTML+='<div style=\'padding:60px;background:#f1f5f9;border-radius:16px;color:#64748b;font-size:1.2rem;\'>🔸 Superproof<br><small>add screenshot</small></div>'">
-            </div>
-            <div class="profile-name">Superproof</div>
-        </div>
+<div class="gallery">
 
-        <!-- Truelancer -->
-        <div class="profile-card">
-            <div class="image-wrapper">
-                <img src="img/truelancer.JPG" alt="Truelancer Profile" onerror="this.style.display='none'; this.parentElement.innerHTML+='<div style=\'padding:60px;background:#f1f5f9;border-radius:16px;color:#64748b;font-size:1.2rem;\'>🔸 Truelancer<br><small>add screenshot</small></div>'">
-            </div>
-            <div class="profile-name">Truelancer</div>
-        </div>
+<div class="profile-card">
+<div class="image-wrapper">
+<img src="img/fiverr.png" alt="Fiverr Profile">
+</div>
+<div class="profile-name">Fiverr</div>
+</div>
 
-        <!-- Twine -->
-        <div class="profile-card">
-            <div class="image-wrapper">
-                <img src="img/twine.JPG" alt="Twine Profile" onerror="this.style.display='none'; this.parentElement.innerHTML+='<div style=\'padding:60px;background:#f1f5f9;border-radius:16px;color:#64748b;font-size:1.2rem;\'>🔸 Twine<br><small>add screenshot</small></div>'">
-            </div>
-            <div class="profile-name">Twine</div>
-        </div>
-    </div>
+<div class="profile-card">
+<div class="image-wrapper">
+<img src="img/freelancer.JPG" alt="Freelancer Profile">
+</div>
+<div class="profile-name">Freelancer</div>
+</div>
 
-    <!-- <div class="note">
-        ⚡ موس ببرید روی هر عکس، 30% بزرگتر میشه
-    </div> -->
+<div class="profile-card">
+<div class="image-wrapper">
+<img src="img/guru.JPG" alt="Guru Profile">
+</div>
+<div class="profile-name">Guru</div>
+</div>
 
-    <div class="footer">
-        <p>Freelancing Profile Screenshots</p>
-    </div>
+<div class="profile-card">
+<div class="image-wrapper">
+<img src="img/preply.JPG" alt="Preply Profile">
+</div>
+<div class="profile-name">Preply</div>
+</div>
+
+<div class="profile-card">
+<div class="image-wrapper">
+<img src="img/superproof.JPG" alt="Superproof Profile">
+</div>
+<div class="profile-name">Superproof</div>
+</div>
+
+<div class="profile-card">
+<div class="image-wrapper">
+<img src="img/truelancer.JPG" alt="Truelancer Profile">
+</div>
+<div class="profile-name">Truelancer</div>
+</div>
+
+<div class="profile-card">
+<div class="image-wrapper">
+<img src="img/twine.JPG" alt="Twine Profile">
+</div>
+<div class="profile-name">Twine</div>
+</div>
+
+</div>
+
+<div class="footer">
+<p>Freelancing Profile Screenshots</p>
+</div>
+
 </div>
 
 </body>
