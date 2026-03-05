@@ -1,246 +1,552 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Freelancing Profiles · Samiulla Mohammadi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Freelancer Gallery | Samiulla Mohammadi</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
 
-body{
-font-family: Arial, sans-serif;
-background: linear-gradient(135deg,#667eea,#764ba2);
-min-height:100vh;
-padding:30px 15px;
-display:flex;
-justify-content:center;
-}
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 30px 20px;
+            color: white;
+            text-align: center;
+        }
 
-.container{
-max-width:1100px;
-width:100%;
-background:white;
-padding:35px;
-border-radius:20px;
-box-shadow:0 20px 50px rgba(0,0,0,0.25);
-}
+        .header h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
 
-.header{
-text-align:center;
-margin-bottom:25px;
-}
+        /* Info Section */
+        .info-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+            background: #f8fafc;
+        }
 
-.header h1{
-font-size:2.4rem;
-color:#2c3e50;
-}
+        .info-card {
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            border: 2px solid #667eea;
+        }
 
-.info{
-display:flex;
-justify-content:center;
-gap:50px;
-flex-wrap:wrap;
-background:#f3f4f6;
-padding:20px;
-border-radius:12px;
-margin-bottom:40px;
-}
+        .info-icon {
+            font-size: 1.5rem;
+        }
 
-.info-item{
-font-size:1.1rem;
-}
+        /* Gallery Grid - Responsive */
+        .gallery {
+            padding: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            background: #f1f5f9;
+        }
 
-.info-item .label{
-font-weight:bold;
-margin-right:8px;
-}
+        /* Profile Card */
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
 
-.gallery{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:25px;
-}
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(102, 126, 234, 0.3);
+        }
 
-.profile-card{
-background:#fff;
-border-radius:16px;
-overflow:hidden;
-border:1px solid #e5e7eb;
-box-shadow:0 10px 20px rgba(0,0,0,0.08);
-transition:0.3s;
-}
+        /* Image Container - اصلاح شده برای نمایش کامل عکس */
+        .image-container {
+            width: 100%;
+            background: #ffffff;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 2px solid #f1f5f9;
+        }
 
-.image-wrapper{
-padding:15px;
-background:#f8fafc;
-}
+        .profile-card img {
+            width: 100%;
+            height: auto;
+            max-height: 250px;
+            object-fit: contain;  /* این خط مهم است - عکس را کامل نشان می‌دهد */
+            object-position: center;
+            border-radius: 10px;
+            background: #f8fafc;
+            transition: transform 0.3s ease;
+        }
 
-.profile-card img{
-width:100%;
-height:220px;
-object-fit:cover;
-border-radius:10px;
-}
+        .profile-card:hover img {
+            transform: scale(1.02);
+        }
 
-.profile-name{
-text-align:center;
-padding:14px;
-font-weight:bold;
-background:#fafafa;
-border-top:1px solid #eee;
-}
+        /* Card Content */
+        .card-content {
+            padding: 15px;
+            background: white;
+        }
 
-.footer{
-text-align:center;
-margin-top:40px;
-padding-top:25px;
-border-top:1px dashed #ccc;
-color:#555;
-}
+        .platform-name {
+            text-align: center;
+            margin-bottom: 12px;
+        }
 
-/* Hover effect فقط برای دستگاه‌هایی که موس دارند */
+        .platform-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+        }
 
-@media (hover:hover){
+        /* Download Button */
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #22c55e;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-.gallery:hover .profile-card:not(:hover){
-opacity:0.5;
-transform:scale(0.95);
-}
+        .download-btn:hover {
+            background: #16a34a;
+            transform: scale(1.02);
+        }
 
-.profile-card:hover{
-transform:scale(1.15);
-box-shadow:0 25px 40px rgba(0,0,0,0.2);
-}
+        .download-btn:active {
+            transform: scale(0.98);
+        }
 
-}
+        .download-icon {
+            font-size: 1.2rem;
+        }
 
-/* Tablet */
+        /* Toast Message */
+        .toast-message {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #10b981;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            max-width: 90%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-@media (max-width:900px){
+        .toast-message.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
 
-.gallery{
-grid-template-columns:1fr;
-}
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1rem;
+        }
 
-}
+        /* Responsive Design - موبایل اول */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
 
-/* Mobile */
+            .container {
+                border-radius: 20px;
+            }
 
-@media (max-width:500px){
+            .header {
+                padding: 20px 15px;
+            }
 
-body{
-padding:15px 10px;
-}
+            .header h1 {
+                font-size: 1.8rem;
+            }
 
-.container{
-padding:20px;
-}
+            .info-wrapper {
+                padding: 15px;
+                gap: 12px;
+            }
 
-.header h1{
-font-size:1.7rem;
-}
+            .info-card {
+                padding: 12px 20px;
+                font-size: 0.95rem;
+                width: 100%;
+                justify-content: center;
+            }
 
-.profile-card img{
-height:180px;
-}
+            .info-icon {
+                font-size: 1.3rem;
+            }
 
-.info{
-flex-direction:column;
-gap:10px;
-text-align:center;
-}
+            .gallery {
+                padding: 15px;
+                gap: 15px;
+                grid-template-columns: 1fr; /* در موبایل هر ردیف یک عکس */
+            }
 
-}
+            .image-container {
+                padding: 10px;
+            }
 
-</style>
+            .profile-card img {
+                max-height: 200px; /* ارتفاع کمتر در موبایل */
+            }
+
+            .platform-badge {
+                padding: 6px 15px;
+                font-size: 1rem;
+            }
+
+            .download-btn {
+                padding: 12px 15px;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* موبایل‌های بسیار کوچک */
+        @media (max-width: 380px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .info-card {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .profile-card img {
+                max-height: 160px;
+            }
+
+            .platform-badge {
+                font-size: 0.9rem;
+                padding: 5px 12px;
+            }
+
+            .download-btn {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* برای تبلت */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr); /* در تبلت ۲ عکس */
+            }
+
+            .profile-card img {
+                max-height: 220px;
+            }
+        }
+
+        /* برای لپ‌تاپ و دسکتاپ */
+        @media (min-width: 1025px) {
+            .gallery {
+                grid-template-columns: repeat(3, 1fr); /* در دسکتاپ ۳ عکس */
+            }
+        }
+
+        /* صفحه‌های بسیار بزرگ */
+        @media (min-width: 1400px) {
+            .gallery {
+                grid-template-columns: repeat(4, 1fr); /* در صفحه‌های خیلی بزرگ ۴ عکس */
+            }
+        }
+
+        /* حذف هاور در موبایل */
+        @media (hover: none) and (pointer: coarse) {
+            .profile-card:hover {
+                transform: none;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .profile-card:active {
+                transform: scale(0.98);
+            }
+
+            .download-btn:hover {
+                background: #22c55e;
+                transform: none;
+            }
+
+            .profile-card:hover img {
+                transform: none;
+            }
+        }
+
+        /* برای دستگاه‌هایی که موس دارند */
+        @media (hover: hover) {
+            .profile-card {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+        }
+
+        /* حالت لودینگ */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* استایل placeholder */
+        .image-container img[src*="placeholder"] {
+            object-fit: contain;
+            padding: 20px;
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🌟 Freelancing Profiles 🌟</h1>
+        </div>
 
-<div class="container">
+        <!-- Info Section -->
+        <div class="info-wrapper">
+            <div class="info-card">
+                <span class="info-icon">👤</span>
+                <span>Samiulla Mohammadi</span>
+            </div>
+            <div class="info-card">
+                <span class="info-icon">👨‍🏫</span>
+                <span>Supervisor: Farzad Azizi</span>
+            </div>
+        </div>
 
-<div class="header">
-<h1>Freelancing Profiles</h1>
-</div>
+        <!-- Gallery -->
+        <div class="gallery" id="gallery"></div>
 
-<div class="info">
+        <!-- Footer -->
+        <div class="footer">
+            <p>📸 All profiles are displayed in full size</p>
+        </div>
+    </div>
 
-<div class="info-item">
-<span class="label">Name:</span>
-<span>Samiulla Mohammadi</span>
-</div>
+    <!-- Toast Message -->
+    <div id="toast" class="toast-message"></div>
 
-<div class="info-item">
-<span class="label">Supervisor:</span>
-<span>Farzad Azizi</span>
-</div>
+    <script>
+        // Platform data
+        const platforms = [
+            { name: 'Fiverr', image: 'img/fiverr.png' },
+            { name: 'Freelancer', image: 'img/freelancer.JPG' },
+            { name: 'Guru', image: 'img/guru.JPG' },
+            { name: 'Preply', image: 'img/preply.JPG' },
+            { name: 'Superproof', image: 'img/superproof.JPG' },
+            { name: 'Truelancer', image: 'img/truelancer.JPG' },
+            { name: 'Twine', image: 'img/twine.JPG' }
+        ];
 
-</div>
+        // Emoji for platforms
+        const emojis = {
+            'Fiverr': '🎨',
+            'Freelancer': '💻',
+            'Guru': '🧠',
+            'Preply': '📚',
+            'Superproof': '✅',
+            'Truelancer': '⭐',
+            'Twine': '🔗'
+        };
 
-<div class="gallery">
+        const gallery = document.getElementById('gallery');
+        const toast = document.getElementById('toast');
 
-<div class="profile-card">
-<div class="image-wrapper">
-<img src="img/fiverr.png" alt="Fiverr Profile">
-</div>
-<div class="profile-name">Fiverr</div>
-</div>
+        // Show toast message
+        function showToast(message, isSuccess = true) {
+            toast.textContent = message;
+            toast.style.background = isSuccess ? '#10b981' : '#ef4444';
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
 
-<div class="profile-card">
-<div class="image-wrapper">
-<img src="img/freelancer.JPG" alt="Freelancer Profile">
-</div>
-<div class="profile-name">Freelancer</div>
-</div>
+        // Download function - ساده و بدون مشکل
+        async function downloadImage(imageUrl, fileName, platformName) {
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+            
+            // Show loading
+            btn.innerHTML = `<span class="download-icon">⏳</span> Downloading...`;
+            btn.style.opacity = '0.7';
+            btn.style.pointerEvents = 'none';
 
-<div class="profile-card">
-<div class="image-wrapper">
-<img src="img/guru.JPG" alt="Guru Profile">
-</div>
-<div class="profile-name">Guru</div>
-</div>
+            try {
+                // Try to download
+                const response = await fetch(imageUrl);
+                
+                if (!response.ok) {
+                    throw new Error('Image not found');
+                }
+                
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = fileName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);
+                
+                showToast(`✅ ${platformName} downloaded!`);
+                
+            } catch (error) {
+                console.log('Using fallback download method');
+                
+                // Fallback method
+                const link = document.createElement('a');
+                link.href = imageUrl;
+                link.download = fileName;
+                link.target = '_blank';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showToast(`✅ ${platformName} - Download started!`);
+            } finally {
+                // Restore button
+                btn.innerHTML = originalText;
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+            }
+        }
 
-<div class="profile-card">
-<div class="image-wrapper">
-<img src="img/preply.JPG" alt="Preply Profile">
-</div>
-<div class="profile-name">Preply</div>
-</div>
+        // Create gallery cards
+        platforms.forEach(platform => {
+            const card = document.createElement('div');
+            card.className = 'profile-card';
+            
+            const imagePath = platform.image;
+            const fileName = `${platform.name.toLowerCase()}-profile.png`;
+            const emoji = emojis[platform.name] || '📷';
+            
+            card.innerHTML = `
+                <div class="image-container">
+                    <img src="${imagePath}" 
+                         alt="${platform.name} Profile"
+                         loading="lazy"
+                         onerror="this.src='https://via.placeholder.com/500x300?text=${platform.name}+${emoji}'">
+                </div>
+                <div class="card-content">
+                    <div class="platform-name">
+                        <span class="platform-badge">
+                            ${emoji} ${platform.name}
+                        </span>
+                    </div>
+                    <button class="download-btn" onclick="downloadImage('${imagePath}', '${fileName}', '${platform.name}')">
+                        <span class="download-icon">⬇️</span>
+                        <span>Download Photo</span>
+                    </button>
+                </div>
+            `;
+            
+            gallery.appendChild(card);
+        });
 
-<div class="profile-card">
-<div class="image-wrapper">
-<img src="img/superproof.JPG" alt="Superproof Profile">
-</div>
-<div class="profile-name">Superproof</div>
-</div>
+        // Handle touch devices
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch-device');
+            
+            // Add active state for touch
+            const buttons = document.querySelectorAll('.download-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('touchstart', function() {
+                    this.style.backgroundColor = '#16a34a';
+                });
+                btn.addEventListener('touchend', function() {
+                    this.style.backgroundColor = '#22c55e';
+                });
+            });
+        }
 
-<div class="profile-card">
-<div class="image-wrapper">
-<img src="img/truelancer.JPG" alt="Truelancer Profile">
-</div>
-<div class="profile-name">Truelancer</div>
-</div>
-
-<div class="profile-card">
-<div class="image-wrapper">
-<img src="img/twine.JPG" alt="Twine Profile">
-</div>
-<div class="profile-name">Twine</div>
-</div>
-
-</div>
-
-<div class="footer">
-<p>Freelancing Profile Screenshots</p>
-</div>
-
-</div>
-
+        // Check images on load
+        window.addEventListener('load', function() {
+            const images = document.querySelectorAll('.image-container img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    const card = this.closest('.profile-card');
+                    const badge = card.querySelector('.platform-badge').textContent;
+                    this.src = `https://via.placeholder.com/500x300?text=${badge}`;
+                });
+            });
+        });
+    </script>
 </body>
 </html>
